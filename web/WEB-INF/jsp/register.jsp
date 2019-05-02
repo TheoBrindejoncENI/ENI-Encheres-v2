@@ -1,6 +1,1 @@
-<jsp:include page="header.jsp"/>
-
-
-
-
-<jsp:include page="footer.jsp"/>
+<h1>Register</h1>
