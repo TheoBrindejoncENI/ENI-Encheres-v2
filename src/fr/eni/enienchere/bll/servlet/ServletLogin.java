@@ -8,10 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/home")
-public class ServletHome extends HttpServlet {
+@WebServlet("/login")
+public class ServletLogin extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
         rd.forward(request, response);
     }
 }
