@@ -6,6 +6,8 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="ENI-Encheres-v2" />
+          <element id="library" level="application" name="jquery" />
+          <element id="library" level="application" name="mdb" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Hibernate 5.4.2-5.4.2" />
