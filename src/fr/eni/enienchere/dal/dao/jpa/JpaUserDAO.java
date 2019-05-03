@@ -18,7 +18,7 @@ public class JpaUserDAO implements UserDAO {
 
     @Override
     public void insert(User user) throws DALException {
-        Session session = ConnectionProvider.session;
+        Session session = ConnectionProvider.getConnection();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();

@@ -19,7 +19,6 @@ public class PickUp  implements Serializable {
 
     @Id
     @ManyToOne
-    @Column(name = "no_article")
     private Article article;
 
     @Column(name = "rue")
