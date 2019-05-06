@@ -1,62 +1,76 @@
 package fr.eni.enienchere.bll.servlet;
 
-import fr.eni.enienchere.bll.LoginManager;
-import fr.eni.enienchere.bll.RegisterManager;
-import fr.eni.enienchere.dal.ConnectionProvider;
+import com.sun.istack.NotNull;
+import fr.eni.enienchere.EnchereException;
+import fr.eni.enienchere.bll.UserManager;
+import fr.eni.enienchere.bll.exception.BLLException;
+import fr.eni.enienchere.bo.User;
+import fr.eni.enienchere.dal.exception.DALException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        handleRequest(request, response);
-    }
+        User utilisateurLog = null;
+        String identifiant = request.getParameter("email");
+        String motDePasse = request.getParameter("password");
+        UserManager utilMana = null;
+        try {
+            utilMana = new UserManager();
+        } catch (BLLException e) {
+            e.printStackTrace();
+        }
+        HttpSession session = request.getSession();
 
-    public void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try {
+            utilisateurLog = requireNonNull(utilMana).selectUser(identifiant);
+        } catch (EnchereException e) {
+            e.printStackTrace();
+            @NotNull
+            String motDePasseUser = utilisateurLog.getPassword();
 
-        resp.setContentType("text/html");
 
-        // Post Parameters From The Request
-        String param1 = req.getParameter("email");
-        String param2 = req.getParameter("password");
+            if (utilisateurLog == null || !motDePasseUser.equals(motDePasse)) {
 
-        if(param1 == null || param2 == null) {
-            // The Request Parameters Were Not Present In The Query String. Do Something Or Exception Handling !!
-        } else if ("".equals(param1) || "".equals(param2)) {
-            // The Request Parameters Were Present In The Query String But Has No Value. Do Something Or Exception Handling !!
-        } else {
-            System.out.println("Username?= " + param1 + ", Password?= " + param2);
+                session.setAttribute("erreur", "Login ou Password incorrect");
+                request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 
-            // Print The Response
-            PrintWriter out = resp.getWriter();
-            out.write("<html><body><div id='serlvetResponse' style='text-align: center;'>");
+            } else if (utilisateurLog != null && motDePasseUser.equals(motDePasse)) {
 
-            // Authentication Logic & Building The Html Response Code
-            if((param1.equalsIgnoreCase("email")) && (param2.equals("admin@123"))) {
-                out.write("<h2>Servlet Application Login Example</h2>");
-                out.write("<p style='color: green; font-size: large;'>Congratulations! <span style='text-transform: capitalize;'>" + param1 + "</span>, You are an authorised login!</p>");
-            } else {
-                out.write("<p style='color: red; font-size: larger;'>You are not an authorised user! Please check with administrator!</p>");
+                session.setAttribute("isConnected", true); //récupération
+                session.setAttribute("actualUser", identifiant);
+                session.setAttribute("idUser", utilisateurLog.getIdUser());
+                session.setAttribute("succes", "Vous êtes connecté");
+                session.setAttribute("credit", utilisateurLog.getMoney());
+                response.sendRedirect(request.getContextPath() + "/index");
+
             }
-            out.write("</div></body></html>");
-            out.close();
-            LoginManager lm = new LoginManager();
-            lm;
-            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-            rd.notify();
+
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
-        rd.forward(request, response);
+        protected void doGet (HttpServletRequest request, HttpServletResponse response) throws
+        ServletException, IOException {
+            HttpSession session = request.getSession();
+
+            //recuperation des variables session
+
+            if (session.getAttribute("isConnected") == null) {
+                request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+            } else {
+                response.sendRedirect(request.getContextPath() + "/index");
+            }
+
+
+        }
     }
-}

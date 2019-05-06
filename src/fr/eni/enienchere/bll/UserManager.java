@@ -1,14 +1,17 @@
 package fr.eni.enienchere.bll;
 
+import fr.eni.enienchere.EnchereException;
 import fr.eni.enienchere.bll.exception.BLLException;
 import fr.eni.enienchere.bo.User;
 import fr.eni.enienchere.dal.dao.DAOFactory;
 import fr.eni.enienchere.dal.dao.UserDAO;
 import fr.eni.enienchere.dal.exception.DALException;
 
+import javax.jws.soap.SOAPBinding;
+import java.util.List;
 import java.util.regex.Pattern;
 
-public class RegisterManager {
+public class UserManager {
 
     private static UserDAO userDAO;
 
@@ -16,7 +19,7 @@ public class RegisterManager {
      * Constructor
      * @throws BLLException
      */
-    public RegisterManager() throws BLLException {
+    public UserManager() throws BLLException {
         userDAO = DAOFactory.getUserDAO();
     }
 
@@ -139,5 +142,35 @@ public class RegisterManager {
         String numberRegex = "^[0-9]+$";
         Pattern pat = Pattern.compile(numberRegex);
         return pat.matcher(numberPhone).matches();
+    }
+
+    public List<User> selectAllUser() throws DALException{
+        return userDAO.selectAll();
+    }
+
+    /*public User selectUser(long idUtilisateur) throws EnchereException {
+        try {
+            userDAO.selectById(idUtilisateur);
+        }catch (EnchereException e){
+            e.printStackTrace();
+        }
+        return userDAO.selectById(idUtilisateur);
+    }
+
+    public User selectUser(String pseudo) throws EnchereException {
+        try {
+            userDAO.selectByUserName(pseudo);
+        } catch (EnchereException e) {
+            e.printStackTrace();
+        }
+        return userDAO.selectByUserName(pseudo);
+    }*/
+    public User selectUser(String email) throws EnchereException {
+        try {
+            userDAO.selectByEmail(email);
+        } catch (EnchereException e) {
+            e.printStackTrace();
+        }
+        return userDAO.selectByEmail(email);
     }
 }

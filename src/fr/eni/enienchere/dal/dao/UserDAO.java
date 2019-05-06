@@ -1,5 +1,6 @@
 package fr.eni.enienchere.dal.dao;
 
+import fr.eni.enienchere.EnchereException;
 import fr.eni.enienchere.bo.User;
 import fr.eni.enienchere.dal.exception.DALException;
 
@@ -32,7 +33,7 @@ public interface UserDAO {
      * @return
      * @throws DALException
      */
-    List<User> selectById(Long id) throws DALException;
+    User selectById(Long id) throws EnchereException;
 
     /**
      * Select a user with useName
@@ -40,7 +41,16 @@ public interface UserDAO {
      * @return
      * @throws DALException
      */
-    List<User> selectByUserName(String username) throws DALException;
+    User selectByUserName(String username) throws EnchereException;
+
+    /**
+     * Select a user with useName
+     * @param email
+     * @return
+     * @throws DALException
+     */
+    User selectByEmail(String email) throws EnchereException;
+
 
 
     /**

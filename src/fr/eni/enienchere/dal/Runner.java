@@ -1,4 +1,4 @@
-package fr.eni.enienchere.dal;
+/*package fr.eni.enienchere.dal;
 
 
 import fr.eni.enienchere.bo.User;
@@ -17,3 +17,4 @@ class Runner {
         session.getTransaction().commit();
     }
 }
+*/

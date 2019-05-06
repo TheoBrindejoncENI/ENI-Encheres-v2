@@ -1,6 +1,6 @@
 package fr.eni.enienchere.bll.servlet;
 
-import fr.eni.enienchere.bll.RegisterManager;
+import fr.eni.enienchere.bll.UserManager;
 import fr.eni.enienchere.bll.exception.BLLException;
 
 import javax.servlet.RequestDispatcher;
@@ -26,7 +26,7 @@ public class ServletRegister extends HttpServlet {
         String postalCode = request.getParameter("postalCode");
 
         try {
-            RegisterManager rm = new RegisterManager();
+            UserManager rm = new UserManager();
             rm.insertUser(userName, lastName, firstName, email, phoneNumber, street, postalCode, city, password);
 
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/registerComplete.jsp");
