@@ -15,14 +15,14 @@ import org.hibernate.cfg.Configuration;
 
 public abstract class ConnectionProvider {
 
-    public static Session session;
+    private static SessionFactory sessionFactory;
 
     static {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        session = sessionFactory.openSession();
+        sessionFactory = new Configuration().configure().buildSessionFactory();
+
     }
 
     public static Session getConnection() {
-        return ConnectionProvider.session;
+        return sessionFactory.openSession();
     }
 }
