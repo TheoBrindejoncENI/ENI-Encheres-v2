@@ -6,6 +6,7 @@ import fr.eni.enienchere.bll.UserManager;
 import fr.eni.enienchere.bll.exception.BLLException;
 import fr.eni.enienchere.bo.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,48 +15,83 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static java.util.Objects.requireNonNull;
+import java.util.List;
+
 
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User utilisateurLog = null;
-        String identifiant = request.getParameter("email");
-        String motDePasse = request.getParameter("password");
-        UserManager utilMana = null;
+
+        final String identifiant = request.getParameter("identifiant").trim();
+        final String motDePasse = request.getParameter("password").trim();
+
+        UserManager um = null;
         try {
-            utilMana = new UserManager();
+            um = new UserManager();
         } catch (BLLException e) {
             e.printStackTrace();
         }
-        HttpSession session = request.getSession();
 
+        List<User> listeUtilisateur = null;
         try {
-            utilisateurLog = requireNonNull(utilMana).selectUser(identifiant);
-        } catch (EnchereException e) {
+            assert um != null;
+            listeUtilisateur = um.selectAllUser();
+        } catch (DALException e) {
             e.printStackTrace();
-            @NotNull
-            String motDePasseUser = utilisateurLog.getPassword();
+        }
+        Long noUser=0l;
+        boolean identifiantExiste = false;
+        boolean motDePasseCorrect = false;
 
+        // vérification de l'existence de l'utilisateur dans la BDD + vérification de la
+        // conformité de son mdp
+        assert listeUtilisateur != null;
+        for (User user : listeUtilisateur) {
 
-            if (utilisateurLog == null || !motDePasseUser.equals(motDePasse)) {
+            if (user.getEmail().equals(identifiant) || user.getUserName().equals(identifiant)) {
 
-                session.setAttribute("erreur", "Login ou Password incorrect");
-                request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
-
-            } else if (utilisateurLog != null && motDePasseUser.equals(motDePasse)) {
-
-                session.setAttribute("isConnected", true); //récupération
-                session.setAttribute("actualUser", identifiant);
-                session.setAttribute("idUser", utilisateurLog.getIdUser());
-                session.setAttribute("succes", "Vous êtes connecté");
-                session.setAttribute("credit", utilisateurLog.getMoney());
-                response.sendRedirect(request.getContextPath() + "/index");
-
+                identifiantExiste = true;
             }
 
+            if (identifiantExiste) {
+
+                if (user.getPassword().equals(motDePasse)) {
+
+                    motDePasseCorrect = true;
+                    noUser = user.getIdUser();
+                    break;
+                }
+
+            }
         }
+
+        // affichage d'une erreur si l'identifiant ou le mdp sont incorrects
+        if (!identifiantExiste || !motDePasseCorrect) {
+
+            String erreur = "Erreur : identifiant ou mot de passe incorrect";
+            request.setAttribute("erreur", erreur);
+            RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath() + "/login");
+            rd.forward(request, response);
+
+        }
+
+
+        // création d'une session si l'identifiant existe et le mdp est correct
+        if (identifiantExiste && motDePasseCorrect) {
+
+
+            HttpSession session = request.getSession();
+            Boolean utilisateurConnecte = true;
+            session.setAttribute("noUser", noUser);
+            session.setAttribute("utilisateurConnecte", utilisateurConnecte);
+
+            doGet(request,response);
+
+
+        }
+
     }
+
 
         protected void doGet (HttpServletRequest request, HttpServletResponse response) throws
         ServletException, IOException {
@@ -63,10 +99,11 @@ public class ServletLogin extends HttpServlet {
 
             //recuperation des variables session
 
-            if (session.getAttribute("isConnected") == null) {
+            if (session.getAttribute("utilisateurConnecte") == null) {
                 request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/index");
+
             }
 
 

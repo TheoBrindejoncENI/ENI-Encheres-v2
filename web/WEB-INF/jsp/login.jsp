@@ -11,7 +11,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-
 <body>
     <div class="wrapper fadeInDown">
         <div id="formContent">
@@ -24,14 +23,14 @@
             </div>
         <form method="post" action="${pageContext.request.contextPath}/login">
 
-                <label for="email"></label>
-                <input placeholder="Email" type="email" id="email" name="email" class="fadeIn second" value="<c:out value="${}"/>" size="20" maxlength="60" />
-                <span class="erreur">${form.erreurs['email']}</span>
+                <label for="identifiant"></label>
+                <input placeholder="Identifiant" type="text" id="identifiant" name="identifiant" class="fadeIn second" value="" size="20" maxlength="60" />
+                <span class="erreur">${form.erreurs['identifiant']}</span>
                 <br />
 
                 <label for="password"></label>
                 <input placeholder="Mot de passe" type="password" id="password" name="password" class="fadeIn third" value="" size="20" maxlength="20" />
-                <span class="erreur">${form.erreurs['motdepasse']}</span>
+                <span class="erreur">${form.erreurs['password']}</span>
                 <br />
 
                 <input type="submit" class="fadeIn fourth" value="Connexion"/>

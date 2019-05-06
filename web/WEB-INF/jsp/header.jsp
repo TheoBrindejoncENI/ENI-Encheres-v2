@@ -37,12 +37,12 @@
                 <li><a href="#">Mon Profil</a></li>
             </ul>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right login">
                     <li><a href="register"><span class="glyphicon glyphicon-sign-up"></span> S'Enregistrer</a> </li>
                     <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right profil">
                     <li><a href="profil">Mon Profil</a></li>
                 </ul>
         </div>
