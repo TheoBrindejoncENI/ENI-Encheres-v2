@@ -12,7 +12,8 @@ import java.time.LocalDate;
  *
  */
 @Data
-@Entity(name = "ARTICLES_VENDUS")
+@Entity
+@Table(name = "ARTICLES_VENDUS")
 public class Article implements Serializable {
 
     @Id

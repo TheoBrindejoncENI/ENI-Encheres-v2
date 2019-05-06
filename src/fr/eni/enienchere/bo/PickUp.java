@@ -2,10 +2,7 @@ package fr.eni.enienchere.bo;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -14,7 +11,8 @@ import java.io.Serializable;
  *
  */
 @Data
-@Entity(name = "RETRAITS")
+@Entity
+@Table(name = "RETRAITS")
 public class PickUp  implements Serializable {
 
     @Id

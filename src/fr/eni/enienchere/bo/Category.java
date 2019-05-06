@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  */
 @Data
-@Entity(name = "CATEGORIES")
+@Entity
+@Table(name = "CATEGORIES")
 public class Category implements Serializable {
 
     @Id

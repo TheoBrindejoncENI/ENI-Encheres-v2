@@ -12,7 +12,8 @@ import java.time.LocalDate;
  *
  */
 @Data
-@Entity(name = "ENCHERES")
+@Entity
+@Table(name = "ENCHERES")
 public class Auction implements Serializable {
 
     @Id
