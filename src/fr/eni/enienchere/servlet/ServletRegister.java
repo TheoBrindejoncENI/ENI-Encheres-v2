@@ -1,4 +1,4 @@
-package fr.eni.enienchere.bll.servlet;
+package fr.eni.enienchere.servlet;
 
 import fr.eni.enienchere.bll.UserManager;
 import fr.eni.enienchere.bll.exception.BLLException;

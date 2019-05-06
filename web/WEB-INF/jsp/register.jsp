@@ -1,6 +1,7 @@
 <jsp:include page="header.jsp"/>
 
-<form action="${pageContext.request.contextPath}/register" method="POST">
+
+    <form action="${pageContext.request.contextPath}/" method="POST">
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="userName">Pseudo</label>
@@ -22,7 +23,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="password">Password</label>
-            <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+            <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe" required>
         </div>
     </div>
     <div class="form-group">
@@ -48,5 +49,4 @@
 
     <button type="submit" class="btn btn-primary">S'enregister</button>
 </form>
-
 <jsp:include page="footer.jsp"/>

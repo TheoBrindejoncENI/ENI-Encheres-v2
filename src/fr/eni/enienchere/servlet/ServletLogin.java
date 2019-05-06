@@ -1,11 +1,10 @@
-package fr.eni.enienchere.bll.servlet;
+package fr.eni.enienchere.servlet;
 
 import com.sun.istack.NotNull;
 import fr.eni.enienchere.EnchereException;
 import fr.eni.enienchere.bll.UserManager;
 import fr.eni.enienchere.bll.exception.BLLException;
 import fr.eni.enienchere.bo.User;
-import fr.eni.enienchere.dal.exception.DALException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 

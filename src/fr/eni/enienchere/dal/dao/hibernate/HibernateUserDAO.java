@@ -34,11 +34,13 @@ public class HibernateUserDAO implements UserDAO {
     }
 
     @Override
-    public List<User> selectById(Long id) throws DALException {
+    public User selectById(Long id) throws DALException {
         Session session = ConnectionProvider.getConnection();
-        Query q = session.createQuery("FROM User WHERE idUser=" + id);
+        Query q = session.createQuery("FROM User WHERE idUser=:idUser");
+        q.setParameter("idUser", id);
         List<User> users = q.getResultList();
-        return users;
+        User user = users.get(0);
+        return user;
     }
 
     @Override

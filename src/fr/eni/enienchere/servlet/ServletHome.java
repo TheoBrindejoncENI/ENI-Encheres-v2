@@ -1,4 +1,4 @@
-package fr.eni.enienchere.bll.servlet;
+package fr.eni.enienchere.servlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
