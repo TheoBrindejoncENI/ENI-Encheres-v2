@@ -33,7 +33,7 @@ public interface UserDAO {
      * @return
      * @throws DALException
      */
-    User selectById(Long id) throws EnchereException;
+    List<User> selectById(Long id) throws DALException;
 
     /**
      * Select a user with useName

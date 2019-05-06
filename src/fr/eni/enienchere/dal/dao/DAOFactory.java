@@ -1,6 +1,6 @@
 package fr.eni.enienchere.dal.dao;
 
-import fr.eni.enienchere.dal.dao.jpa.*;
+import fr.eni.enienchere.dal.dao.hibernate.*;
 
 /**
  *
@@ -9,15 +9,15 @@ import fr.eni.enienchere.dal.dao.jpa.*;
  */
 public class DAOFactory {
 
-    public static UserDAO getUserDAO() { return new JpaUserDAO(); }
+    public static UserDAO getUserDAO() { return new HibernateUserDAO(); }
 
-    public static  ArticleDAO getArticleDAO() { return new JpaArticleDAO(); }
+    public static  ArticleDAO getArticleDAO() { return new HibernateArticleDAO(); }
 
     public static CategoryDAO getCategoryDAO() {
-        return new JpaCategoryDAO();
+        return new HibernateCategoryDAO();
     }
 
-    public static AuctionDAO getAuctionDAO() { return new JpaAuctionDAO(); }
+    public static AuctionDAO getAuctionDAO() { return new HibernateAuctionDAO(); }
 
-    public static PickUpDAO getPickUpDAO() { return new JpaPickUpDAO(); }
+    public static PickUpDAO getPickUpDAO() { return new HibernatePickUpDAO(); }
 }
