@@ -4,6 +4,7 @@ import fr.eni.enienchere.EnchereException;
 import fr.eni.enienchere.bo.User;
 import fr.eni.enienchere.dal.exception.DALException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public interface UserDAO {
      * @return
      * @throws DALException
      */
-    User selectByEmail(String email) throws EnchereException;
+    User selectByEmail(String email) throws EnchereException, SQLException;
 
 
 

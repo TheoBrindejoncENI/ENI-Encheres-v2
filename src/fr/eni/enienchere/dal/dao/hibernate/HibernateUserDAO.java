@@ -1,13 +1,19 @@
 package fr.eni.enienchere.dal.dao.hibernate;
 
 import fr.eni.enienchere.EnchereException;
+import fr.eni.enienchere.bll.exception.BLLException;
 import fr.eni.enienchere.bo.User;
 import fr.eni.enienchere.dal.ConnectionProvider;
 import fr.eni.enienchere.dal.dao.UserDAO;
 import fr.eni.enienchere.dal.exception.DALException;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.hibernate.result.ResultSetOutput;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +34,7 @@ public class HibernateUserDAO implements UserDAO {
     @Override
     public List<User> selectAll() throws DALException {
         Session session = ConnectionProvider.getConnection();
-        Query q = session.createQuery("FROM User ");
+        Query q = session.createQuery("FROM User");
         List<User> users = q.getResultList();
         return users;
     }
@@ -78,31 +84,20 @@ public class HibernateUserDAO implements UserDAO {
 
     @Override
     public User selectByEmail(String email) throws EnchereException {
-        User user = null;
-
-        try(Session session = ConnectionProvider.getConnection()){
-            Query q = session.createQuery("FROM User WHERE email=:email");
-            q.setParameter("email",email);
-            user = (User) q.list().get(0);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-            EnchereException enchereException = new EnchereException();
-            //TODO : CodesResultatDAL
-            //businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
-            throw enchereException;
+        List<User> liste;
+        User res = null;
+        Session session = ConnectionProvider.getConnection();
+        Query q = session.createQuery("from User where email=:email");
+        liste = q.getResultList();
+        for(User u : liste) {
+            if(u.getEmail().equals(email)) {
+                res = u;
+                break;
+            }
         }
-
-        if(user == null)
-        {
-            EnchereException enchereException = new EnchereException();
-            //TODO : CodesResultatDAL
-            //businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_INEXISTANTE);
-            throw enchereException;
-        }
-
-        return user;
+        return res;
     }
+
 
 
     @Override

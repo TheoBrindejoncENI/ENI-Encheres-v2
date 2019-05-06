@@ -12,6 +12,7 @@
 		<property name="hibernate.show_sql">true</property>
 <!--	<property name="hibernate.hbm2ddl.auto">validate</property> -->
 		<property name="hibernate.connection.pool_size">10</property>
+		<property name="hibernate.current_session_context_class">thread</property>
 		<mapping class="fr.eni.enienchere.bo.User"/>
 		<mapping class="fr.eni.enienchere.bo.Category"/>
 		<mapping class="fr.eni.enienchere.bo.Article"/>

@@ -8,6 +8,7 @@ import fr.eni.enienchere.dal.dao.UserDAO;
 import fr.eni.enienchere.dal.exception.DALException;
 
 import javax.jws.soap.SOAPBinding;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -21,6 +22,7 @@ public class UserManager {
      */
     public UserManager() throws BLLException {
         userDAO = DAOFactory.getUserDAO();
+
     }
 
     /**
@@ -165,12 +167,11 @@ public class UserManager {
         }
         return userDAO.selectByUserName(pseudo);
     }*/
-    public User selectUser(String email) throws EnchereException {
-        try {
-            userDAO.selectByEmail(email);
-        } catch (EnchereException e) {
-            e.printStackTrace();
-        }
-        return userDAO.selectByEmail(email);
+    public User selectUser(String email) throws EnchereException, SQLException {
+        User user = null;
+
+        user = (User) userDAO.selectByEmail(email);
+
+        return user;
     }
 }
