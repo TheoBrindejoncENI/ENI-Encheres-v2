@@ -5,6 +5,7 @@ import fr.eni.enienchere.EnchereException;
 import fr.eni.enienchere.bll.UserManager;
 import fr.eni.enienchere.bll.exception.BLLException;
 import fr.eni.enienchere.bo.User;
+import fr.eni.enienchere.dal.exception.DALException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -20,9 +20,8 @@ public class ServletEditProfile extends HttpServlet {
 
         try {
             ProfileManager pm = new ProfileManager();
-            // HttpSession session = request.getSession();
-            // User user = pm.selectUserProfile((long) session.getAttribute("noUser"));
-            User user = pm.selectUserProfile((long) 1); // DEBUG
+            HttpSession session = request.getSession();
+            User user = pm.selectUserProfile((long) session.getAttribute("noUser"));
             user.setUserName(request.getParameter("userName"));
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
