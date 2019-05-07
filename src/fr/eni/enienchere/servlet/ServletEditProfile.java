@@ -59,6 +59,8 @@ public class ServletEditProfile extends HttpServlet {
             ProfileManager pm = new ProfileManager();
             HttpSession session = request.getSession();
             User user = pm.selectUserProfile((long) session.getAttribute("noUser"));
+            String password = user.getPassword();
+
             user.setUserName(request.getParameter("userName"));
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
@@ -67,11 +69,12 @@ public class ServletEditProfile extends HttpServlet {
             user.setStreet(request.getParameter("street"));
             user.setPostalCode(request.getParameter("postalCode"));
             user.setCity(request.getParameter("city"));
-            String password = request.getParameter("password");
-            if (password != null) {
-                user.setPassword(password);
+
+            String newPassword = request.getParameter("password");
+            if (newPassword != null) {
+                user.setPassword(newPassword);
             } else {
-                user.setPassword(user.getPassword());
+                user.setPassword(password);
             }
             pm.updateUserProfile(user);
 
