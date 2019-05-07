@@ -7,12 +7,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="profile" value="${requestScope.profile}"/>
 <c:set var="admin" value="${requestScope.admin}"/>
 <c:set var="register" value="${requestScope.register}"/>
 <c:set var="connect" value="${requestScope.connect}"/>
-<c:set var="disconnect" value="${requestScope.disconnect}"/>
+<c:set var="disconnect" value="${requestScope.disconnect}"/--%>
 
 <html lang="fr">
 <head>
@@ -42,24 +42,14 @@
                 <li class="active"><a href="home">Accueil</a></li>
                 <li><a href="#">Enchères</a></li>
                 <li><a href="#">Vendre</a></li>
-                <c:if test="${profile == true}">
                     <li><a href="profile">Mon Profil</a></li>
-                </c:if>
-                <c:if test="${admin == true}">
                     <li><a href="showAdmin">Administration</a></li>
-                </c:if>
             </ul>
 
                 <ul class="nav navbar-nav navbar-right login">
-                    <c:if test="${register == true}">
                      <li><a href="register"><span class="glyphicon glyphicon-sign-up"></span> S'Enregistrer</a> </li>
-                    </c:if>
-                    <c:if test="${connect == true}">
                      <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
-                    </c:if>
-                    <c:if test="${disconnect == true}">
                      <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Deconnexion</a></li>
-                    </c:if>
                 </ul>
         </div>
     </div>
