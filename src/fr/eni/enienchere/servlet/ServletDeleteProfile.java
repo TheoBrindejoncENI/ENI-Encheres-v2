@@ -12,12 +12,32 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ *
+ * @author ehourman2019
+ *
+ */
 @WebServlet("/deleteProfile")
 public class ServletDeleteProfile extends HttpServlet {
+
+    /**
+     * return doGet()
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
 
+    /**
+     * Delete a user in bdd
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             ProfileManager pm = new ProfileManager();
