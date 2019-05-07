@@ -45,12 +45,17 @@ public class ServletShowProfile extends HttpServlet {
         try {
             ProfileManager pm = new ProfileManager();
             HttpSession session = request.getSession();
-            user = pm.selectUserProfile((long) session.getAttribute("noUser"));
+            if (session.getAttribute("utilisateurConnecte") == null) {
+                RequestDispatcher rd = request.getRequestDispatcher("/login");
+                rd.forward(request, response);
+            } else {
+                user = pm.selectUserProfile((long) session.getAttribute("noUser"));
+                request.setAttribute("user", this.user);
+                RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/showProfile.jsp");
+                rd.forward(request, response);
+            }
         } catch (BLLException e) {
             e.getStackTrace();
         }
-        request.setAttribute("user", this.user);
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/showProfile.jsp");
-        rd.forward(request, response);
     }
 }
