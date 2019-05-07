@@ -1,5 +1,10 @@
 package fr.eni.enienchere.servlet;
 
+import fr.eni.enienchere.bll.ProfileManager;
+import fr.eni.enienchere.bll.exception.BLLException;
+import fr.eni.enienchere.bo.User;
+import sun.java2d.cmm.Profile;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

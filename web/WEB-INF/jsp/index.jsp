@@ -1,7 +1,7 @@
 
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@include file="header.jsp" %>
+<jsp:include page="header.jsp"/>
 <!-- Page Content -->
 <link rel="stylesheet" type="text/css" href="../css/shop.css">
 

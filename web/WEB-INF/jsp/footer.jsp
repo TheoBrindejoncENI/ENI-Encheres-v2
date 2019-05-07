@@ -8,6 +8,7 @@
 <!-- Footer -->
 <footer class="fixed-bottom">
     <div class="container">
+    </br></br></br></br></br>
         <p class="m-0 text-center text-white">Copyright &copy; ENI-Enchères</p>
     </div>
     <!-- /.container -->
