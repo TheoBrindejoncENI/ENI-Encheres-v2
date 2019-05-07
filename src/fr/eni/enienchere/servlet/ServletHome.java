@@ -14,4 +14,8 @@ public class ServletHome extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
         rd.forward(request, response);
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

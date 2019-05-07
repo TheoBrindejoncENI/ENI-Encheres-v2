@@ -19,7 +19,6 @@ public class ServletShowProfile extends HttpServlet {
     private User user;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("COUCOU##############");
         doGet(request,response);
     }
 
@@ -28,7 +27,6 @@ public class ServletShowProfile extends HttpServlet {
             ProfileManager pm = new ProfileManager();
             HttpSession session = request.getSession();
             user = pm.selectUserProfile((long) session.getAttribute("noUser"));
-            user = pm.selectUserProfile((long) 1);
         } catch (BLLException e) {
             e.getStackTrace();
         }

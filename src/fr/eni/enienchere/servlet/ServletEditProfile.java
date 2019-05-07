@@ -16,6 +16,24 @@ import java.io.IOException;
 
 @WebServlet("/editProfile")
 public class ServletEditProfile extends HttpServlet {
+
+    User user;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            ProfileManager pm = new ProfileManager();
+            HttpSession session = request.getSession();
+            user = pm.selectUserProfile((long) session.getAttribute("noUser"));
+        } catch (BLLException e) {
+            e.getStackTrace();
+        }
+        request.setAttribute("user", this.user);
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/editProfile.jsp");
+        rd.forward(request, response);
+
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
@@ -26,16 +44,19 @@ public class ServletEditProfile extends HttpServlet {
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
             user.setEmail(request.getParameter("email"));
-            user.setPhoneNumber(request.getParameter("numberPhone"));
+            user.setPhoneNumber(request.getParameter("phoneNumber"));
             user.setStreet(request.getParameter("street"));
             user.setPostalCode(request.getParameter("postalCode"));
             user.setCity(request.getParameter("city"));
             String password = request.getParameter("password");
             if (password != null) {
                 user.setPassword(password);
+            } else {
+                user.setPassword(user.getPassword());
             }
-            pm.updateUserProfile(user.getIdUser());
+            pm.updateUserProfile(user);
 
+            request.setAttribute("user", user);
             RequestDispatcher rd = request.getRequestDispatcher("/profile");
             rd.forward(request, response);
         } catch (BLLException e) {

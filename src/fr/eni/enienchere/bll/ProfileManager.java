@@ -28,9 +28,9 @@ public class ProfileManager {
        return null;
     }
 
-    public void updateUserProfile(long id) throws BLLException {
+    public void updateUserProfile(User user) throws BLLException {
         try {
-            userDAO.update(id);
+            userDAO.update(user);
         } catch (DALException e) {
             e.printStackTrace();
         }

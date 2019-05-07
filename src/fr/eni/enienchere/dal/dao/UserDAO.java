@@ -56,10 +56,10 @@ public interface UserDAO {
 
     /**
      * Update user in bdd
-     * @param id
+     * @param user
      * @throws DALException
      */
-    void update(Long id) throws DALException;
+    void update(User user) throws DALException;
 
     /**
      * Delete user in bdd

@@ -1,7 +1,5 @@
 package fr.eni.enienchere.servlet;
 
-import com.sun.istack.NotNull;
-import fr.eni.enienchere.EnchereException;
 import fr.eni.enienchere.bll.UserManager;
 import fr.eni.enienchere.bll.exception.BLLException;
 import fr.eni.enienchere.bo.User;
@@ -71,7 +69,7 @@ public class ServletLogin extends HttpServlet {
 
             String erreur = "Erreur : identifiant ou mot de passe incorrect";
             request.setAttribute("erreur", erreur);
-            RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath() + "/login");
+            RequestDispatcher rd = request.getRequestDispatcher("/login");
             rd.forward(request, response);
 
         }
@@ -103,7 +101,7 @@ public class ServletLogin extends HttpServlet {
             if (session.getAttribute("utilisateurConnecte") == null) {
                 request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
             } else {
-                response.sendRedirect(request.getContextPath() + "/index");
+                response.sendRedirect("/home");
 
             }
 
