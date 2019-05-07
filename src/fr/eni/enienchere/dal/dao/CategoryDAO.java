@@ -36,10 +36,10 @@ public interface CategoryDAO {
 
     /**
      * Update category in bdd
-     * @param id
+     * @param category
      * @throws DALException
      */
-    void update(Long id) throws DALException;
+    void update(Category category) throws DALException;
 
     /**
      * Delete category in bdd

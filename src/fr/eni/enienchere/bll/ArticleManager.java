@@ -26,7 +26,11 @@ public class ArticleManager {
     }
 
     public void insertArticle(Article article) throws BLLException {
-
+        try {
+            articleDAO.insert(article);
+        } catch (DALException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Article> selectAllArticle() throws  BLLException {

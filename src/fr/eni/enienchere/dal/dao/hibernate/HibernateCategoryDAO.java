@@ -41,9 +41,8 @@ public class HibernateCategoryDAO implements CategoryDAO {
     }
 
     @Override
-    public void update(Long id) throws DALException {
+    public void update(Category category) throws DALException {
         Session session = ConnectionProvider.getConnection();
-        Category category = (Category) session.get(Category.class, id);
         session.beginTransaction();
         session.saveOrUpdate(category);
         session.getTransaction().commit();
