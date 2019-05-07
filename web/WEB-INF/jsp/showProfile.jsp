@@ -5,7 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/header"/>
 
 <c:set var="user" value="${user}"/>
 <div align="center">
@@ -28,10 +28,9 @@ ${user.firstName} ${user.lastName}
 </c:choose>
     <a class="btn btn-info btn-sm mx-auto"
        href="${pageContext.request.contextPath}/editProfile" role="button">
-        <span class="glyphicon glyphicon-pencil " aria-hidden="true"></span> Editer
+        <span class="glyphicon glyphicon-pencil " aria-hidden="true"></span> Editer</a>
     <a class="btn btn-danger btn-sm mx-auto"
        href="${pageContext.request.contextPath}/deleteProfile" role="button">
         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Supprimer</a>
-
 </div>
 <jsp:include page="footer.jsp"/>
