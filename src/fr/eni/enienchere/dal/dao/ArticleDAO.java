@@ -36,10 +36,10 @@ public interface ArticleDAO {
 
     /**
      * Update article in bdd
-     * @param id
+     * @param article
      * @throws DALException
      */
-    void update(Long id) throws DALException;
+    void update(Article article) throws DALException;
 
     /**
      * Delete article in bdd
