@@ -69,8 +69,7 @@ public class ServletLogin extends HttpServlet {
 
             String erreur = "Erreur : identifiant ou mot de passe incorrect";
             request.setAttribute("erreur", erreur);
-            RequestDispatcher rd = request.getRequestDispatcher("/login");
-            rd.forward(request, response);
+            doGet(request,response);
 
         }
 
