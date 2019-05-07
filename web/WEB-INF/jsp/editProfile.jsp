@@ -52,7 +52,7 @@
     <button type="submit" class="btn btn-success btn-sm">
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider
     </button>
-    <a class="btn btn-secondary btn-sm mx-auto"
+    <a class="btn btn-secondary btn-sm"
        href="${pageContext.request.contextPath}/profile" role="button">Annuler</a>
 
 <jsp:include page="footer.jsp"/>

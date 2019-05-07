@@ -1,7 +1,7 @@
 <jsp:include page="header.jsp"/>
 
 
-    <form action="${pageContext.request.contextPath}/" method="POST">
+    <form action="${pageContext.request.contextPath}/register" method="POST">
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="userName">Pseudo</label>

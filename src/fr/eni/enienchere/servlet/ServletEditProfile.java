@@ -60,7 +60,6 @@ public class ServletEditProfile extends HttpServlet {
             HttpSession session = request.getSession();
             User user = pm.selectUserProfile((long) session.getAttribute("noUser"));
             String password = user.getPassword();
-
             user.setUserName(request.getParameter("userName"));
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
@@ -71,10 +70,10 @@ public class ServletEditProfile extends HttpServlet {
             user.setCity(request.getParameter("city"));
 
             String newPassword = request.getParameter("password");
-            if (newPassword != null) {
-                user.setPassword(newPassword);
-            } else {
+            if (newPassword == "") {
                 user.setPassword(password);
+            } else {
+                user.setPassword(newPassword);
             }
             pm.updateUserProfile(user);
 
