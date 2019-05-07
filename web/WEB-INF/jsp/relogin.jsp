@@ -27,6 +27,7 @@
                         <label for="password">Your password</label>
                         <input name="password" id="password" class="form-control" placeholder="******" type="password">
                     </div><!-- form-group// -->
+                    <a class="error">Identifiant ou mot de passe érronée</a>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block"> Login  </button>
                     </div> <!-- form-group// -->
