@@ -11,8 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ *
+ * @author ehourman2019
+ *
+ */
 @WebServlet("/register")
 public class ServletRegister extends HttpServlet {
+
+    /**
+     * Get all attribut for a new user and insert the user in bdd
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String userName = request.getParameter("userName");
@@ -38,6 +51,13 @@ public class ServletRegister extends HttpServlet {
 
     }
 
+    /**
+     * View of register
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/register.jsp");
         rd.forward(request, response);

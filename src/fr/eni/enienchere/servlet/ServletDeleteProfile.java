@@ -2,7 +2,6 @@ package fr.eni.enienchere.servlet;
 
 import fr.eni.enienchere.bll.ProfileManager;
 import fr.eni.enienchere.bll.exception.BLLException;
-import fr.eni.enienchere.bo.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,10 +17,8 @@ import java.io.IOException;
  * @author ehourman2019
  *
  */
-@WebServlet("/profile")
-public class ServletShowProfile extends HttpServlet {
-
-    private User user;
+@WebServlet("/deleteProfile")
+public class ServletDeleteProfile extends HttpServlet {
 
     /**
      * return doGet()
@@ -35,7 +32,7 @@ public class ServletShowProfile extends HttpServlet {
     }
 
     /**
-     * view of the user profile
+     * Delete a user in bdd
      * @param request
      * @param response
      * @throws ServletException
@@ -45,12 +42,11 @@ public class ServletShowProfile extends HttpServlet {
         try {
             ProfileManager pm = new ProfileManager();
             HttpSession session = request.getSession();
-            user = pm.selectUserProfile((long) session.getAttribute("noUser"));
+            pm.deleteUserProfile((long) session.getAttribute("noUser"));
+            RequestDispatcher rd = request.getRequestDispatcher("/logout");
+            rd.forward(request, response);
         } catch (BLLException e) {
             e.getStackTrace();
         }
-        request.setAttribute("user", this.user);
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/showProfile.jsp");
-        rd.forward(request, response);
     }
 }

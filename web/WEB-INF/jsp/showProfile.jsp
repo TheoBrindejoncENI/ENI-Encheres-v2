@@ -2,64 +2,26 @@
 <jsp:include page="header.jsp"/>
 
 <c:set var="user" value="${user}"/>
-<form action="${pageContext.request.contextPath}/editProfile" method="POST">
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label for="userName">Pseudo</label>
-            <input name="userName" type="text" class="form-control" id="userName" value="${user.userName}" required>
-        </div>
-        <div class="form-group col-md-4">
-            <label for="firstName">Prénom</label>
-            <input name="firstName" type="text" class="form-control" id="firstName" value="${user.firstName}" required>
-        </div>
-        <div class="form-group col-md-4">
-            <label for="lastName">Nom</label>
-            <input name="lastName" type="text" class="form-control" id="lastName" value="${user.lastName}" required>
-        </div>
-    </div>
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <label for="email">Email</label>
-            <input name="email" type="email" class="form-control" id="email" value="${user.email}" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="password">Password</label>
-            <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="street">Rue</label>
-        <input name="street" type="text" class="form-control" id="street" value="${user.street}" required>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="city">Ville</label>
-            <input name="city" type="text" class="form-control" id="city" value="${user.city}" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="postalCode">Code Postal</label>
-            <input name="postalCode" type="number" class="form-control" id="postalCode" value="${user.postalCode}"
-                   required>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="phoneNumber">Numero de téléphone</label>
-            <input name="phoneNumber" type="number" class="form-control" id="phoneNumber" value="${user.phoneNumber}"
-                   required>
-        </div>
-    </div>
-    <c:choose>
-        <c:when test="${user.money == null}">
-            <p>Aucun crédit</p>
-        </c:when>
-        <c:otherwise>
-            <p>${user.money} Crédits</p>
-        </c:otherwise>
-    </c:choose>
-    <button type="submit" class="btn btn-sm">
+<p>${user.userName}</p>
+<p>
+${user.firstName} ${user.lastName}
+</p>
+<p>${user.email}</p>
+<p>${user.phoneNumber}</p>
+<p>${user.street}</p>
+<p>${user.city}</p>
+<p>${user.postalCode}</p>
+<c:choose>
+    <c:when test="${user.money == null}">
+        <p>Aucun crédit</p>
+    </c:when>
+    <c:otherwise>
+        <p>${user.money} Crédits</p>
+    </c:otherwise>
+</c:choose>
+    <a class="btn btn-danger btn-sm mx-auto"
+       href="${pageContext.request.contextPath}/editProfile" role="button">
         <span class="glyphicon glyphicon-pencil " aria-hidden="true"></span> Editer
-    </button>
     <a class="btn btn-danger btn-sm mx-auto"
        href="${pageContext.request.contextPath}/deleteProfile" role="button">
         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Supprimer</a>

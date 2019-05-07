@@ -9,10 +9,6 @@ import org.hibernate.cfg.Configuration;
  * @author ehourman2019
  *
  */
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
 public abstract class ConnectionProvider {
 
     private static SessionFactory sessionFactory;

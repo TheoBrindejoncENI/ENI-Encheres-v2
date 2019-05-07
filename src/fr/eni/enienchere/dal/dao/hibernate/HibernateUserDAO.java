@@ -50,9 +50,8 @@ public class HibernateUserDAO implements UserDAO {
     }
 
     @Override
-    public void update(Long id) throws DALException {
+    public void update(User user) throws DALException {
         Session session = ConnectionProvider.getConnection();
-        User user = (User) session.get(User.class, id);
         session.beginTransaction();
         session.saveOrUpdate(user);
         session.getTransaction().commit();

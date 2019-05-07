@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 @WebServlet("/logout")
 public class ServletLogout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class ServletLogout extends HttpServlet {
         session.invalidate();
 
         out.print("You are successfully logged out!");
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/home");
         rd.forward(request, response);
         out.close();
 

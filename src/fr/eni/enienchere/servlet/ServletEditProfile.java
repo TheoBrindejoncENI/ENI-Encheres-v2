@@ -14,28 +14,71 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ *
+ * @author ehourman2019
+ *
+ */
 @WebServlet("/editProfile")
 public class ServletEditProfile extends HttpServlet {
+
+    User user;
+
+    /**
+     * View of profile edition
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            ProfileManager pm = new ProfileManager();
+            HttpSession session = request.getSession();
+            user = pm.selectUserProfile((long) session.getAttribute("noUser"));
+        } catch (BLLException e) {
+            e.getStackTrace();
+        }
+        request.setAttribute("user", this.user);
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/editProfile.jsp");
+        rd.forward(request, response);
+
+    }
+
+    /**
+     * get all change for the current user and update this user in bdd
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             ProfileManager pm = new ProfileManager();
             HttpSession session = request.getSession();
             User user = pm.selectUserProfile((long) session.getAttribute("noUser"));
+            String password = user.getPassword();
+
             user.setUserName(request.getParameter("userName"));
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
             user.setEmail(request.getParameter("email"));
-            user.setPhoneNumber(request.getParameter("numberPhone"));
+            user.setPhoneNumber(request.getParameter("phoneNumber"));
             user.setStreet(request.getParameter("street"));
             user.setPostalCode(request.getParameter("postalCode"));
             user.setCity(request.getParameter("city"));
-            String password = request.getParameter("password");
-            if (password != null) {
+
+            String newPassword = request.getParameter("password");
+            if (newPassword != null) {
+                user.setPassword(newPassword);
+            } else {
                 user.setPassword(password);
             }
-            pm.updateUserProfile(user.getIdUser());
+            pm.updateUserProfile(user);
 
+            request.setAttribute("user", user);
             RequestDispatcher rd = request.getRequestDispatcher("/profile");
             rd.forward(request, response);
         } catch (BLLException e) {
