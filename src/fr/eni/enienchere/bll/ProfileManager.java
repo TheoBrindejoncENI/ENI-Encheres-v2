@@ -35,4 +35,12 @@ public class ProfileManager {
             e.printStackTrace();
         }
     }
+
+    public void deleteUserProfile(long id) throws BLLException {
+        try {
+            userDAO.delete(id);
+        } catch (DALException e) {
+            e.printStackTrace();
+        }
+    }
 }
