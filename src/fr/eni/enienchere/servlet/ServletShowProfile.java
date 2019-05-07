@@ -13,15 +13,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ *
+ * @author ehourman2019
+ *
+ */
 @WebServlet("/profile")
 public class ServletShowProfile extends HttpServlet {
 
     private User user;
 
+    /**
+     * return doGet()
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
 
+    /**
+     * view of the user profile
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             ProfileManager pm = new ProfileManager();
