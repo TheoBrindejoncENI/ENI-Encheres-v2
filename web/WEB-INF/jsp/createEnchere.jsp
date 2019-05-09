@@ -3,6 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div>
     <img src="">
+
+
     <div class="form-group">
         <form>
             <label for="article_name">Article :</label>

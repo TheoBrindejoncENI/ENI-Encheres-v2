@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home">ENI Encheres</a>
+            <a class="navbar-brand" href="home"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> ENI Encheres</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
