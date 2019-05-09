@@ -20,7 +20,8 @@
                         <p>${article.description}</p>
                         <p>${article.initPrice}€</p>
                         <a class="btn btn-info btn-sm mx-auto"
-                           href="${pageContext.request.contextPath}/showArticle?id=${article.idArticle}" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Détail</a>
+                           href="${pageContext.request.contextPath}/article?id=${article.idArticle}" role="button">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Détail</a>
                     </div>
                 </div>
             </c:forEach>
