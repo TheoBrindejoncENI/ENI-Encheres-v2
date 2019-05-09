@@ -22,7 +22,7 @@ import java.io.IOException;
 @WebServlet("/editProfile")
 public class ServletEditProfile extends HttpServlet {
 
-    User user;
+    private User user;
 
     /**
      * View of profile edition

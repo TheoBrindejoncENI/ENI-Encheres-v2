@@ -33,11 +33,12 @@ public class HibernateCategoryDAO implements CategoryDAO {
     }
 
     @Override
-    public List<Category> selectById(Long id) throws DALException {
+    public Category selectById(Long id) throws DALException {
         Session session = ConnectionProvider.getConnection();
         Query q = session.createQuery("FROM Category WHERE idCategory=" + id);
         List<Category> categories = q.getResultList();
-        return categories;
+        Category category = categories.get(0);
+        return category;
     }
 
     @Override

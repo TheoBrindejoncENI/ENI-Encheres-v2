@@ -51,6 +51,15 @@ public class ArticleManager {
         return null;
     }
 
+    public List<Article> selectArticleByUserId(long id) throws BLLException {
+        try  {
+            return (List<Article>) articleDAO.selectAllUserArticle(id);
+        } catch (DALException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public  void updateArticle(Article article) throws BLLException {
         try {
             articleDAO.update(article);

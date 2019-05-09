@@ -34,10 +34,20 @@ public class HibernateArticleDAO implements ArticleDAO {
     }
 
     @Override
-    public List<Article> selectById(Long id) throws DALException {
+    public Article selectById(Long id) throws DALException {
         Session session = ConnectionProvider.getConnection();
         Query q = session.createQuery("FROM Article WHERE idArticle=:idArticle");
         q.setParameter("idArticle", id);
+        List<Article> articles = q.getResultList();
+        Article article = articles.get(0);
+        return article;
+    }
+
+    @Override
+    public List<Article> selectAllUserArticle(Long id) throws DALException {
+        Session session = ConnectionProvider.getConnection();
+        Query q = session.createQuery("FROM Article WHERE user.idUser=:idUser");
+        q.setParameter("idUser", id);
         List<Article> articles = q.getResultList();
         return articles;
     }

@@ -32,7 +32,7 @@ public interface CategoryDAO {
      * @return
      * @throws DALException
      */
-    List<Category> selectById(Long id) throws DALException;
+    Category selectById(Long id) throws DALException;
 
     /**
      * Update category in bdd

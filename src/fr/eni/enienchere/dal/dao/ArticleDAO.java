@@ -32,7 +32,14 @@ public interface ArticleDAO {
      * @return
      * @throws DALException
      */
-    List<Article> selectById(Long id) throws DALException;
+    Article selectById(Long id) throws DALException;
+
+    /**
+     * Select all user article
+     * @return
+     * @throws DALException
+     */
+    List<Article> selectAllUserArticle(Long id) throws  DALException;
 
     /**
      * Update article in bdd

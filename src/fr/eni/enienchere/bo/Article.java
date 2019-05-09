@@ -22,7 +22,7 @@ public class Article implements Serializable {
     private Long idArticle;
 
     @Column(name = "nom_article")
-    private String name;
+    private String title;
 
     @Column(name = "description")
     private String description;
@@ -47,8 +47,8 @@ public class Article implements Serializable {
     @JoinColumn(name = "no_categorie")
     private Category category;
 
-    public Article(String name, String description, LocalDate auctionStartDate, LocalDate auctionEndDate, int initPrice, int sellPrice, User user, Category category) {
-        this.name = name;
+    public Article(String title, String description, LocalDate auctionStartDate, LocalDate auctionEndDate, int initPrice, int sellPrice, User user, Category category) {
+        this.title = title;
         this.description = description;
         this.auctionStartDate = auctionStartDate;
         this.auctionEndDate = auctionEndDate;

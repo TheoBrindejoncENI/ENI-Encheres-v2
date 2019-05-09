@@ -92,8 +92,11 @@ public class ServletLogin extends HttpServlet {
             if (session.getAttribute("utilisateurConnecte") == null) {
                 request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
             } else {
-                response.sendRedirect(request.getContextPath()+ "/home");
-
+                if (session.getAttribute("lastUrl") == null) {
+                    response.sendRedirect(request.getContextPath()+ "/home");
+                } else {
+                    response.sendRedirect(request.getContextPath()+ session.getAttribute("lastUrl"));
+                }
             }
 
         }
