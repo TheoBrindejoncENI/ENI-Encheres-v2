@@ -2,52 +2,37 @@
 <jsp:include page="header.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div>
-    <img src="">
-
-
+    <h1 align="center">Ajouter une echère</h1>
     <div class="form-group">
-        <form>
-            <label for="article_name">Article :</label>
-                <input class="form-control" type="text" placeholder="Votre article" name="article_name" id="article_name">
+        <form action="${pageContext.request.contextPath}/createEnchere" method="POST">
+            <label for="title">Titre :</label>
+            <input class="form-control" type="text" placeholder="Titre de l'article" name="title" id="title" required/>
 
-            <label for="article_description">Description :</label>
-                <textarea class="form-control" id="article_description" rows="3" name="article_description"></textarea>
+            <label for="description">Description :</label>
+            <textarea class="form-control" id="description" rows="3" name="description" placeholder="Description de l'article" required></textarea>
 
-            <label for="article_categorie">Catégorie :</label>
-                <select class="form-control" id="article_categorie">
-                    <option>Maison</option>
-                </select>
+            <label for="category">Catégorie :</label>
+            <select class="form-control" id="category" name="category" required>
+                <option disabled selected>Choisir une categorie</option>
+                <c:forEach var="category" items="${requestScope.category}">
+                    <option value="${category.idCategory}">${category.title}</option>
+                </c:forEach>
+            </select>
 
-            <label></label>
-                <button type="button">Uploader</button>
-            <label></label>
-            <input class="form-control" type="number" placeholder="100" name="article_price" id="article_price">
+            <label for="initPrice">Prix :</label>
+            <input class="form-control" type="number" placeholder="100" name="initPrice" id="initPrice" required/>
+
+            <label for="auctionStartDate">Début de l'enchère :</label>
+            <input type="date" class="form-control" name="auctionStartDate" id="auctionStartDate" required/>
+
+            <label for="auctionEndDate">Fin de l'enchère :</label>
+            <input type="date" class="form-control" name="auctionEndDate" id="auctionEndDate" required/>
+
+            <button type="submit" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider
+            </button>
+            <a class="btn btn-secondary btn-sm"
+               href="${pageContext.request.contextPath}/home" role="button">Annuler</a>
         </form>
-        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
-            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
-        </div>
-        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
-            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
-        </div>
-        <div>
-
-        </div>
     </div>
-</div>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker('show');
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker2').datetimepicker('show');
-    });
-</script>
 <jsp:include page="footer.jsp"/>
