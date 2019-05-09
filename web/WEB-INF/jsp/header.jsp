@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
-
+<c:set var="user" value="${sessionUser}"/>
+<c:set var="isConnected" value="${sessionScope.utilisateurConnecte}"/>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -40,16 +41,26 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="home">Accueil</a></li>
-                <li><a href="#">Enchères</a></li>
+                <li><a href="articleList">Enchères</a></li>
                 <li><a href="#">Vendre</a></li>
+                <c:if test="${isConnected == true}">
                     <li><a href="profile">Mon Profil</a></li>
+                </c:if>
+                <c:if test="${user.userAdmin == true}">
                     <li><a href="showAdmin">Administration</a></li>
+                </c:if>
             </ul>
 
                 <ul class="nav navbar-nav navbar-right login">
-                     <li><a href="register"><span class="glyphicon glyphicon-sign-up"></span> S'Enregistrer</a> </li>
-                     <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
-                     <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Deconnexion</a></li>
+                    <c:if test="${empty isConnected}">
+                        <li><a href="register"><span class="glyphicon glyphicon-sign-up"></span> S'Enregistrer</a> </li>
+                    </c:if>
+                    <c:if test="${empty isConnected}">
+                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+                    </c:if>
+                    <c:if test="${isConnected == true}">
+                        <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Deconnexion</a></li>
+                    </c:if>
                 </ul>
         </div>
     </div>
