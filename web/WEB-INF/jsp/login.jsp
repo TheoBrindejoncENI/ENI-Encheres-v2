@@ -12,28 +12,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <body>
-<div class="row">
-    <aside class="col-sm-4">
-        <div class="card">
-            <article class="card-body">
-                <a href="register" class="float-right btn btn-outline-primary">Sign up</a>
-                <h4 class="card-title mb-4 mt-1">Sign in</h4>
-                <form method="post">
-                    <div class="form-group">
-                        <label for="identifiant">Your email</label>
-                        <input name="identifiant" class="form-control" placeholder="Email" type="text" id="identifiant">
-                    </div> <!-- form-group// -->
-                    <div class="form-group">
-                        <label for="password">Your password</label>
-                        <input name="password" id="password" class="form-control" placeholder="******" type="password">
-                    </div><!-- form-group// -->
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-                    </div> <!-- form-group// -->
-                </form>
-            </article>
-        </div> <!-- card.// -->
-    </aside>
+<div class="wrapper">
+    <div class="form-signin">
+<form method="post">
+    <h2 class="form-signin-heading">ENI Enchere</h2>
+    <label for="identifiant"></label>
+    <input type="text" class="form-control" name="identifiant" placeholder="Email/Pseudo" required="" autofocus="" id="identifiant" />
+    <label for="password"></label>
+    <input type="password" class="form-control" name="password" placeholder="Mot de Passe" required="" id="password"/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+</form>
+    <form action="register" method="get">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">S'enregistrer</button>
+    </form>
+</div>
 </div>
 </body>
 </html>
