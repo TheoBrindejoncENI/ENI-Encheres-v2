@@ -44,12 +44,12 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker1').datetimepicker(date());
+        $('#datetimepicker1').datetimepicker('show');
     });
 </script>
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker2').datetimepicker(date());
+        $('#datetimepicker2').datetimepicker('show');
     });
 </script>
 <jsp:include page="footer.jsp"/>
