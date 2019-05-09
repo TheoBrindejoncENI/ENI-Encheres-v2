@@ -26,10 +26,6 @@ public class ServletAdminShow extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             cm = new CategoryManager();
             pm = new ProfileManager();
@@ -40,10 +36,10 @@ public class ServletAdminShow extends HttpServlet {
             } else {
                 User user = pm.selectUserProfile((long) session.getAttribute("noUser"));
                 if (user.isUserAdmin() == true) {
-                   categories = cm.selectAllCategory();
-                   request.setAttribute("category", this.categories);
-                   RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/adminShow.jsp");
-                   rd.forward(request, response);
+                    categories = cm.selectAllCategory();
+                    request.setAttribute("category", this.categories);
+                    RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/adminShow.jsp");
+                    rd.forward(request, response);
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/home");
                     rd.forward(request, response);
@@ -52,5 +48,9 @@ public class ServletAdminShow extends HttpServlet {
         } catch (BLLException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

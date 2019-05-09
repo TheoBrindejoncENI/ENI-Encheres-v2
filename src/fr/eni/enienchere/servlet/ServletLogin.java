@@ -19,6 +19,7 @@ import java.util.List;
 
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         final String identifiant = request.getParameter("identifiant").trim();
@@ -58,6 +59,13 @@ public class ServletLogin extends HttpServlet {
 
                     motDePasseCorrect = true;
                     noUser = user.getIdUser();
+                    HttpSession session = request.getSession();
+                    Boolean utilisateurConnecte = true;
+                    session.setAttribute("noUser", noUser);
+                    session.setAttribute("utilisateurConnecte", utilisateurConnecte);
+                    session.setAttribute("sessionUser", user);
+                    doGet(request,response);
+
                     break;
                 }
 
@@ -72,22 +80,6 @@ public class ServletLogin extends HttpServlet {
             doGet(request,response);
 
         }
-
-
-        // création d'une session si l'identifiant existe et le mdp est correct
-        if (identifiantExiste && motDePasseCorrect) {
-
-
-            HttpSession session = request.getSession();
-            Boolean utilisateurConnecte = true;
-            session.setAttribute("noUser", noUser);
-            session.setAttribute("utilisateurConnecte", utilisateurConnecte);
-
-            doGet(request,response);
-
-
-        }
-
     }
 
 
