@@ -25,7 +25,6 @@
     <script src="https://use.fontawesome.com/releases/v5.6.3/css/all.css"></script>
     <link rel="stylesheet" href="../css/header.css">
 </head>
-<label></label>
 <body>
 <c:set var="user" value="${sessionUser}"/>
 <c:set var="isConnected" value="${sessionScope.utilisateurConnecte}"/>
