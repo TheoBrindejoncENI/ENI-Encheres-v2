@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!-- Footer -->
-<footer class="fixed-bottom">
+<footer class="fixed-bottom" style="position: absolute;
+    bottom: 0;">
     <div class="container">
     </br></br></br></br></br>
         <p class="m-0 text-center text-white">Copyright &copy; ENI-Enchères</p>
