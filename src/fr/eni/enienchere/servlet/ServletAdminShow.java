@@ -31,6 +31,7 @@ public class ServletAdminShow extends HttpServlet {
             pm = new ProfileManager();
             session = request.getSession();
             if (session.getAttribute("utilisateurConnecte") == null) {
+                session.setAttribute("lastUrl", "/showAdmin");
                 RequestDispatcher rd = request.getRequestDispatcher("/login");
                 rd.forward(request, response);
             } else {

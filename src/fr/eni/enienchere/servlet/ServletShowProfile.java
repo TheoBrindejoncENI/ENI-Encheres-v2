@@ -46,6 +46,7 @@ public class ServletShowProfile extends HttpServlet {
             ProfileManager pm = new ProfileManager();
             HttpSession session = request.getSession();
             if (session.getAttribute("utilisateurConnecte") == null) {
+                session.setAttribute("lastUrl", "/profile");
                 RequestDispatcher rd = request.getRequestDispatcher("/login");
                 rd.forward(request, response);
             } else {
