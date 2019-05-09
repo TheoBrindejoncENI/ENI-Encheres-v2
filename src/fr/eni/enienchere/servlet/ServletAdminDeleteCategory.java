@@ -26,6 +26,7 @@ public class ServletAdminDeleteCategory extends HttpServlet {
             CategoryManager cm = new CategoryManager();
             HttpSession session = request.getSession();
             if (session.getAttribute("utilisateurConnecte") == null) {
+                session.setAttribute("lastUrl", "/showAdmin");
                 RequestDispatcher rd = request.getRequestDispatcher("/home");
                 rd.forward(request, response);
             } else {

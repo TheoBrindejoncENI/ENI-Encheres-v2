@@ -25,11 +25,16 @@ public class ServletShowUserArticle extends HttpServlet {
         try {
             ArticleManager am = new ArticleManager();
             HttpSession session =  request.getSession();
-            List<Article> articles = am.selectArticleByUserId((long) session.getAttribute("noUser"));
-            request.setAttribute("articles", articles);
-            RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/showUserArticle.jsp");
-            rd.forward(request, response);
-
+            if (session.getAttribute("utilisateurConnecte") == null) {
+                session.setAttribute("lastUrl", "/myArticle");
+                RequestDispatcher rd = request.getRequestDispatcher("/login");
+                rd.forward(request, response);
+            } else {
+                List<Article> articles = am.selectArticleByUserId((long) session.getAttribute("noUser"));
+                request.setAttribute("articles", articles);
+                RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/showUserArticle.jsp");
+                rd.forward(request, response);
+            }
         } catch (BLLException e) {
             e.printStackTrace();
         }
