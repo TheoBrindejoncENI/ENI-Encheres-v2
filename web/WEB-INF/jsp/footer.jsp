@@ -5,6 +5,7 @@
   Time: 09:46
   To change this template use File | Settings | File Templates.
 --%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- Footer -->
 <footer class="fixed-bottom">
     <div class="container">

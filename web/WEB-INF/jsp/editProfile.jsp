@@ -8,6 +8,8 @@
 <jsp:include page="header.jsp"/>
 
 <c:set var="user" value="${user}"/>
+<div class="container">
+    <h1 align="center">Mon profil</h1>
 <form action="${pageContext.request.contextPath}/editProfile" method="POST">
     <div class="form-row">
         <div class="form-group col-md-4">
@@ -29,11 +31,12 @@
             <input name="email" type="email" class="form-control" id="email" value="${user.email}" required>
         </div>
         <div class="form-group col-md-6">
-            <label for="password">Password</label>
-            <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe">
+            <label for="phoneNumber">Numero de téléphone</label>
+            <input name="phoneNumber" type="number" class="form-control" id="phoneNumber" value="${user.phoneNumber}"
+                   required>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
         <label for="street">Rue</label>
         <input name="street" type="text" class="form-control" id="street" value="${user.street}" required>
     </div>
@@ -50,15 +53,19 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="phoneNumber">Numero de téléphone</label>
-            <input name="phoneNumber" type="number" class="form-control" id="phoneNumber" value="${user.phoneNumber}"
-                   required>
+            <label for="password">Password</label>
+            <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe">
         </div>
     </div>
-    <button type="submit" class="btn btn-success btn-sm">
+
+    <div class="container-btn" align="center">
+    <button type="submit" class="btn btn-success">
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider
     </button>
-    <a class="btn btn-secondary btn-sm"
+    <a class="btn btn-danger"
        href="${pageContext.request.contextPath}/profile" role="button">Annuler</a>
+    </div>
+</form>
+</div>
 
 <jsp:include page="footer.jsp"/>
