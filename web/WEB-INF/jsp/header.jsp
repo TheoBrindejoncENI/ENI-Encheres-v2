@@ -44,7 +44,9 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="home">Accueil</a></li>
                 <li><a href="articleList">Enchères</a></li>
-                <li><a href="#">Vendre</a></li>
+                <c:if test="${isConnected == true}">
+                    <li><a href="createEnchere">Vendre</a></li>
+                </c:if>
                 <c:if test="${isConnected == true}">
                     <li><a href="profile">Mon Profil</a></li>
                 </c:if>
