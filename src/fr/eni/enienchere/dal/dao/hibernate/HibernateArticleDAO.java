@@ -55,6 +55,7 @@ public class HibernateArticleDAO implements ArticleDAO {
     @Override
     public void update(Article article) throws DALException {
         Session session = ConnectionProvider.getConnection();
+        session.beginTransaction();
         session.saveOrUpdate(article);
         session.getTransaction().commit();
     }
